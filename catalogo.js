@@ -242,13 +242,53 @@ const conta=c=>MAQUINAS.filter(m=>m.cat===c).length;
 filtros.insertAdjacentHTML('beforeend',`<button class="chip" data-cat="todas" aria-pressed="true"><i></i>Todas (${MAQUINAS.length})</button>`+
   ORDEM.filter(conta).map(c=>`<button class="chip" data-cat="${c}" aria-pressed="false"><i></i>${esc(CATS[c].label)} (${conta(c)})</button>`).join(''));
 const chips=[...filtros.querySelectorAll('.chip')];
+
+// paginação: 12 máquinas por página, com a opção de ver todas de uma vez
+const POR_PAG=12, paginas=document.getElementById('paginas');
+let catAtual='todas', pag=1, verTodas=false;
+// números das páginas, com reticências quando são muitas: 1 2 3 4 … 8 · 1 … 4 5 6 … 8 · 1 … 5 6 7 8
+// no celular cabem menos botões: 1 2 3 … 8 · 1 … 4 … 8
+const estreito=matchMedia('(max-width:480px)');
+const numeros=(n,total)=>{
+  const raio=estreito.matches?0:1, borda=estreito.matches?3:5;
+  if(total<=borda+2) return [...Array(total)].map((_,i)=>i+1);
+  let ini=Math.max(2,Math.min(n-raio,total-borda+1)), fim=Math.min(total-1,Math.max(n+raio,borda));
+  if(ini===3) ini=2; if(fim===total-2) fim=total-1; // reticências nunca escondem uma página só
+  return [1,...(ini>2?['…']:[]),...[...Array(fim-ini+1)].map((_,i)=>ini+i),...(fim<total-1?['…']:[]),total];
+};
+const mostrar=()=>{
+  const cards=[...grid.querySelectorAll('.maq')], ok=cards.filter(c=>catAtual==='todas'||c.dataset.cat===catAtual);
+  const total=Math.max(1,Math.ceil(ok.length/POR_PAG)); pag=Math.min(pag,total);
+  const ini=verTodas?0:(pag-1)*POR_PAG, fim=verTodas?ok.length:Math.min(ini+POR_PAG,ok.length);
+  cards.forEach(c=>c.hidden=true); ok.slice(ini,fim).forEach(c=>c.hidden=false);
+  grid.querySelector('.maq-vazio').hidden=ok.length>0;
+  const dividir=ok.length>POR_PAG;
+  paginas.hidden=!ok.length;
+  paginas.innerHTML=`<p class="pag-info">Mostrando ${ok.length?ini+1:0}–${fim} de ${ok.length} máquinas</p>`+
+    (dividir&&!verTodas?`<div class="pag-nums">
+      <button type="button" class="pag-seta" data-pag="${pag-1}" ${pag===1?'disabled':''} aria-label="Página anterior">‹</button>
+      ${numeros(pag,total).map(i=>i==='…'?'<span aria-hidden="true">…</span>':`<button type="button" data-pag="${i}" aria-label="Página ${i}"${i===pag?' aria-current="page"':''}>${i}</button>`).join('')}
+      <button type="button" class="pag-seta" data-pag="${pag+1}" ${pag===total?'disabled':''} aria-label="Próxima página">›</button></div>`:'')+
+    (dividir?`<button type="button" class="pag-modo btn btn-outline">${verTodas?'Ver em páginas':`Ver todas (${ok.length})`}</button>`:'');
+};
+// volta para o topo do catálogo ao trocar de página, para o cliente começar pela primeira máquina
+const subir=()=>document.getElementById('catalogo').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+paginas.addEventListener('click',e=>{
+  const b=e.target.closest('button'); if(!b||b.disabled) return;
+  if(b.classList.contains('pag-modo')){ verTodas=!verTodas; pag=1; mostrar(); paginas.querySelector('.pag-modo').focus({preventScroll:true}); if(!verTodas) subir(); return; }
+  pag=+b.dataset.pag; mostrar(); subir();
+  // quem navega pelo teclado continua na primeira máquina da nova página
+  grid.querySelector('.maq:not([hidden]) .maq-ver')?.focus({preventScroll:true});
+});
+
+estreito.addEventListener('change',()=>mostrar());
+
 const filtrar=cat=>{
   chips.forEach(c=>c.setAttribute('aria-pressed',c.dataset.cat===cat));
-  let n=0; grid.querySelectorAll('.maq').forEach(m=>{const ok=cat==='todas'||m.dataset.cat===cat; m.hidden=!ok; n+=ok;});
-  grid.querySelector('.maq-vazio').hidden=n>0;
+  catAtual=cat; pag=1; mostrar();
   // no celular os filtros rolam de lado: deixa o escolhido à vista
   const ativo=chips.find(c=>c.dataset.cat===cat); if(ativo) filtros.scrollLeft=ativo.offsetLeft-filtros.offsetLeft-16;
 };
 chips.forEach(c=>c.addEventListener('click',()=>filtrar(c.dataset.cat)));
 const inicial=new URLSearchParams(location.search).get('cat');
-if(chips.some(c=>c.dataset.cat===inicial)) filtrar(inicial);
+filtrar(chips.some(c=>c.dataset.cat===inicial)?inicial:'todas');
