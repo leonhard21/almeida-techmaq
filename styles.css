@@ -40,11 +40,6 @@ p{margin:0}
 .js .reveal.pre{transform:translateY(24px);opacity:.001}
 
 /* ---------- topo ---------- */
-.topbar{background:var(--black-3);font-size:13px}
-.topbar .wrap{display:flex;justify-content:flex-end;gap:16px;padding-block:9px;flex-wrap:wrap}
-.topbar .grp{display:flex;gap:26px;flex-wrap:wrap}
-.topbar span{display:inline-flex;align-items:center;gap:8px;color:var(--on-dark)}
-.topbar .ic{width:14px;height:14px;color:var(--red)}
 header.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(14,15,16,.0);transition:background .25s,box-shadow .25s;border-bottom:1px solid rgba(255,255,255,.08)}
 header.nav.solid{background:rgba(14,15,16,.96);box-shadow:0 8px 30px rgba(0,0,0,.35);backdrop-filter:blur(8px)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:80px;gap:24px}
@@ -299,9 +294,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--red);border-colo
 /* ---------- responsivo ---------- */
 @media (max-width:1060px){
   .menu{display:none}.burger{display:grid;place-items:center}
-  /* sem a faixa de cima, o menu aberto começa logo abaixo do cabeçalho e nada fica escondido */
-  .topbar{display:none}
-  .mobile{display:block;position:fixed;inset:0;z-index:45;overflow-y:auto;background:var(--black);padding:calc(100px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) 24px max(16px,env(safe-area-inset-left,0px));transform:translateX(100%);transition:transform .3s}
+    .mobile{display:block;position:fixed;inset:0;z-index:45;overflow-y:auto;background:var(--black);padding:calc(100px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) 24px max(16px,env(safe-area-inset-left,0px));transform:translateX(100%);transition:transform .3s}
   .mobile.open{transform:none}
   .mobile a{display:block;font-family:var(--head);font-weight:700;font-size:30px;text-transform:uppercase;text-decoration:none;padding:12px 0;border-bottom:1px solid var(--line)}
   .mobile a.sub{font-size:20px;color:var(--on-dark);padding-left:18px}
@@ -326,7 +319,6 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--red);border-colo
 }
 
 .icon-sprite { position: absolute; }
-.social-link { text-decoration: none; }
 .chip[data-line="cat"], .line[data-id="cat"] { --c: var(--cat); }
 .chip[data-line="deere"], .line[data-id="deere"] { --c: var(--deere-light); }
 .chip[data-line="all"] { --c: #fff; }
