@@ -44,8 +44,8 @@ header.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;backgroun
 header.nav.solid{background:rgba(14,15,16,.96);box-shadow:0 8px 30px rgba(0,0,0,.35);backdrop-filter:blur(8px)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:80px;gap:24px}
 .logo{display:flex;align-items:center;gap:12px;text-decoration:none}
-.logo-mark{width:44px;height:44px;background:var(--red);display:grid;place-items:center;border-bottom-right-radius:14px}
-.logo-mark svg{width:26px;height:26px;stroke:#fff;stroke-width:2.6;fill:none}
+.logo-mark{width:48px;height:44px;display:grid;place-items:center}
+.logo-mark img{width:100%;height:100%;display:block}
 .logo-txt{font-family:var(--head);font-weight:800;font-size:23px;line-height:.92}
 .logo-txt small{display:block;font-size:12px;font-weight:600;letter-spacing:.34em;color:var(--red-light)}
 .menu{display:flex;gap:26px;list-style:none;margin:0;padding:0;align-items:center}
@@ -348,7 +348,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--red);border-colo
 .loc summary:hover .loc-more{color:#fff}
 .loc-body{padding:0 32px 32px;animation:locIn .35s ease-out}
 @keyframes locIn{from{opacity:0;transform:translateY(-8px)}}
-.loc-cats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.loc-cats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .loc-cats a{position:relative;aspect-ratio:4/3;overflow:hidden;text-decoration:none;border:1px solid var(--line)}
 .loc-cats img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
 .loc-cats a:hover img{transform:scale(1.06)}
@@ -404,6 +404,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--red);border-colo
 .obra li{font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line);padding:4px 8px;color:var(--on-dark)}
 @media (max-width:1060px){
   .loc-cats{grid-template-columns:1fr 1fr}
+  .loc-cats a:last-child{grid-column:1/-1;aspect-ratio:16/7}
   .maq-grid{grid-template-columns:1fr 1fr}
   .passos ol{grid-template-columns:1fr 1fr}
   .port-grid,.obra{grid-template-columns:1fr}
