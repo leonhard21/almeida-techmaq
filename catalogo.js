@@ -169,7 +169,7 @@ const foto=(src,alt)=>src?`<img src="${esc(src)}" alt="${esc(alt)}" loading="laz
 
 const grid=document.getElementById('maq-grid');
 // link direto para o WhatsApp já com a máquina na mensagem
-const waLocacao=m=>'https://wa.me/559191567936?text='+encodeURIComponent(`Olá, Almeida Tech Maq! Vim pelo site e gostaria de consultar a disponibilidade para locação: ${m.nome} (${m.modelo}).`);
+const waLocacao=m=>'https://wa.me/5591991567936?text='+encodeURIComponent(`Olá, Almeida Tech Maq! Vim pelo site e gostaria de consultar a disponibilidade para locação: ${m.nome} (${m.modelo}).`);
 const specsDl=specs=>`<dl>${specs.map(([k,v])=>`<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>`;
 grid.innerHTML=MAQUINAS.map((m,i)=>`
   <article class="maq${m.fotos.length?'':' sem-foto'}" data-cat="${esc(m.cat)}" data-i="${i}">

@@ -53,7 +53,7 @@ if(reduce){ LOG.forEach(()=>addLog()); } else {
 const copy=async(btn,txt)=>{ try{ await navigator.clipboard.writeText(txt); btn.textContent='Copiado'; btn.classList.add('ok'); }catch(e){ const r=document.createRange(); const b=btn.closest('.d')?.querySelector('b')||$('#msg'); r.selectNodeContents(b); const s=getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent='Selecionado: Ctrl+C'; } setTimeout(()=>{btn.textContent=btn.dataset.label||'Copiar'; btn.classList.remove('ok')},2000); };
 $$('.copy[data-copy]').forEach(b=>b.addEventListener('click',()=>copy(b,b.dataset.copy)));
 // modal orçamento → WhatsApp (DDI 55 + DDD 91 + número)
-const WA='559191567936';
+const WA='5591991567936';
 // <dialog>: o navegador cuida do foco preso, do Esc e de devolver o foco ao botão que abriu
 const modal=$('#modal'), qf=$('#qf'), done=$('#done');
 // data-serv / data-msg no botão pré-preenchem o formulário
