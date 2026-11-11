@@ -605,3 +605,8 @@ body:has(.mobile.open) .wa{display:none}
   .passos li{padding:24px 20px 26px}
   .obra .in{padding:22px 20px 24px}
 }
+
+/* fotos de estúdio da Caterpillar: fundo branco e a máquina inteira à vista */
+.maq .ph{background:#fff}
+.f-foto{background:#fff}
+.f-foto img{object-fit:contain}

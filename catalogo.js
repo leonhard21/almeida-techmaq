@@ -32,12 +32,6 @@ const CATS={
   compactadores:{label:'Compactadores', nome:'Rolo compactador',
     descricao:'Rolo para compactação de solo e asfalto em obras de terraplenagem e pavimentação.',
     aplicacoes:['Compactação de solo','Pavimentação','Aterros','Estradas']},
-  'caminhoes-articulados':{label:'Caminhões articulados', nome:'Caminhão articulado',
-    descricao:'Caminhão fora de estrada articulado, com tração 6x6 para terrenos moles e rampas.',
-    aplicacoes:['Transporte em terraplenagem','Barragens','Mineração','Terreno acidentado']},
-  'caminhoes-fora-estrada':{label:'Caminhões fora de estrada', nome:'Caminhão fora de estrada',
-    descricao:'Caminhão rígido de grande porte para transporte de minério e estéril em pedreiras e minas.',
-    aplicacoes:['Mineração','Pedreiras','Grandes obras']},
   telescopicos:{label:'Manipuladores telescópicos', nome:'Manipulador telescópico',
     descricao:'Manipulador com lança telescópica para elevar e posicionar cargas em altura.',
     aplicacoes:['Construção civil','Armazéns','Agro','Montagem industrial']},
@@ -50,7 +44,9 @@ const CATS={
 };
 
 // Somente linha amarela Caterpillar: cat(categoria, modelo, especificações [, campos extras])
-const cat=(c,modelo,specs,extra={})=>({cat:c, modelo:'Caterpillar '+modelo, specs, ...extra});
+// a foto de cada modelo fica em img/catalogo/cat-<modelo>.webp (imagens do site da Caterpillar)
+const fotoCat=modelo=>'img/catalogo/cat-'+modelo.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')+'.webp';
+const cat=(c,modelo,specs,extra={})=>({cat:c, modelo:'Caterpillar '+modelo, specs, fotos:[fotoCat(modelo)], ...extra});
 const MAQUINAS=[
   cat('miniescavadeiras','301.5',[['Peso operacional','≈ 1,6 t'],['Potência','≈ 18 hp']]),
   cat('miniescavadeiras','302.7',[['Peso operacional','≈ 2,7 t'],['Potência','≈ 24 hp']]),
@@ -60,8 +56,7 @@ const MAQUINAS=[
   cat('miniescavadeiras','308 CR',[['Peso operacional','≈ 8,4 t'],['Potência','≈ 70 hp']]),
   cat('escavadeiras','313',[['Peso operacional','≈ 13,5 t'],['Potência','≈ 99 hp']]),
   cat('escavadeiras','316',[['Peso operacional','≈ 17 t'],['Potência','≈ 120 hp']]),
-  cat('escavadeiras','320',[['Peso operacional','≈ 22 t'],['Potência','≈ 162 hp'],['Caçamba','≈ 1,2 m³'],['Esteira','Sapatas de 600 mm']],
-    {fotos:['img/escavadeira-amarela-em-terreno-de-pedra.webp','img/escavadeira-em-operacao.webp','img/silhueta-de-escavadeira-no-por-do-sol.webp','img/motor-diesel.webp']}),
+  cat('escavadeiras','320',[['Peso operacional','≈ 22 t'],['Potência','≈ 162 hp'],['Caçamba','≈ 1,2 m³'],['Esteira','Sapatas de 600 mm']]),
   cat('escavadeiras','323',[['Peso operacional','≈ 25 t'],['Potência','≈ 162 hp']]),
   cat('escavadeiras','326',[['Peso operacional','≈ 26 t'],['Potência','≈ 204 hp']]),
   cat('escavadeiras','330',[['Peso operacional','≈ 30 t'],['Potência','≈ 273 hp']]),
@@ -122,20 +117,6 @@ const MAQUINAS=[
   cat('compactadores','CS79B',[['Peso operacional','≈ 18 t'],['Cilindro','≈ 2,1 m · solo']]),
   cat('compactadores','CB10',[['Peso operacional','≈ 10 t'],['Cilindro','≈ 1,7 m · asfalto']],{nome:'Rolo tandem'}),
   cat('compactadores','CW34',[['Peso operacional','≈ 10 a 27 t'],['Rodado','Pneus · asfalto']],{nome:'Rolo de pneus'}),
-  cat('caminhoes-articulados','725',[['Carga útil','≈ 24 t'],['Tração','6x6']]),
-  cat('caminhoes-articulados','730',[['Carga útil','≈ 28 t'],['Tração','6x6']]),
-  cat('caminhoes-articulados','740',[['Carga útil','≈ 39 t'],['Tração','6x6']]),
-  cat('caminhoes-articulados','745',[['Carga útil','≈ 41 t'],['Tração','6x6']]),
-  cat('caminhoes-fora-estrada','770',[['Carga útil','≈ 38 t'],['Uso','Pedreira · obra']]),
-  cat('caminhoes-fora-estrada','772',[['Carga útil','≈ 47 t'],['Uso','Pedreira · obra']]),
-  cat('caminhoes-fora-estrada','773',[['Carga útil','≈ 55 t'],['Uso','Pedreira · mina']]),
-  cat('caminhoes-fora-estrada','775',[['Carga útil','≈ 64 t'],['Uso','Pedreira · mina']]),
-  cat('caminhoes-fora-estrada','777',[['Carga útil','≈ 90 t'],['Uso','Mineração']]),
-  cat('caminhoes-fora-estrada','785',[['Carga útil','≈ 140 t'],['Uso','Mineração']]),
-  cat('caminhoes-fora-estrada','789',[['Carga útil','≈ 180 t'],['Uso','Mineração']]),
-  cat('caminhoes-fora-estrada','793',[['Carga útil','≈ 230 t'],['Uso','Mineração']]),
-  cat('caminhoes-fora-estrada','795 AC',[['Carga útil','≈ 313 t'],['Tração','Elétrica']]),
-  cat('caminhoes-fora-estrada','797',[['Carga útil','≈ 360 t'],['Uso','Mineração']]),
   cat('telescopicos','TH255',[['Capacidade','≈ 2,5 t'],['Altura de elevação','≈ 5,5 m']]),
   cat('telescopicos','TH357',[['Capacidade','≈ 3,5 t'],['Altura de elevação','≈ 7 m']]),
   cat('telescopicos','TH408',[['Capacidade','≈ 4 t'],['Altura de elevação','≈ 8 m']]),
