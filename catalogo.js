@@ -1,6 +1,6 @@
 // Catálogo de locação e portfólio — edite as listas abaixo para atualizar a página.
 // ATENÇÃO: as especificações da linha Caterpillar são valores de referência APROXIMADOS (≈) por modelo.
-// Confira com a ficha técnica de cada unidade antes de publicar. Obras do portfólio são EXEMPLOS.
+// Confira com a ficha técnica de cada unidade antes de publicar. A seção de aplicações traz EXEMPLOS ilustrativos, não obras reais.
 
 // Categorias, na ordem dos botões de filtro. Cada máquina herda nome, descrição e aplicações da sua categoria
 // (uma máquina pode sobrescrever qualquer um desses campos).
@@ -136,13 +136,13 @@ MAQUINAS.sort((a,b)=>ORDEM.indexOf(a.cat)-ORDEM.indexOf(b.cat));
 
 const OBRAS=[
   {foto:'img/caminhonete-em-estrada-de-fazenda.webp', tag:'Agro · Paragominas - PA', titulo:'Abertura de estradas em fazenda',
-   texto:'Exemplo: abertura e cascalhamento de estradas internas para escoamento da safra.', maquinas:['Trator de esteira','Motoniveladora']},
+   texto:'Abertura e cascalhamento de estradas internas para escoamento da safra.', maquinas:['Trator de esteira','Motoniveladora']},
   {foto:'img/escavadeira-em-operacao.webp', tag:'Mineração · Pará', titulo:'Apoio a frente de lavra',
-   texto:'Exemplo: locação mensal com mecânico de campo dedicado.', maquinas:['Escavadeira hidráulica','Pá carregadeira']},
+   texto:'Locação mensal com mecânico de campo dedicado.', maquinas:['Escavadeira hidráulica','Pá carregadeira']},
   {foto:'img/equipe-tecnica-em-manutencao.webp', tag:'Usina · Pará', titulo:'Manutenção de pátio de usina',
-   texto:'Exemplo: limpeza e movimentação de material no pátio durante a entressafra.', maquinas:['Pá carregadeira','Retroescavadeira']},
+   texto:'Limpeza e movimentação de material no pátio durante a entressafra.', maquinas:['Pá carregadeira','Retroescavadeira']},
   {foto:'img/oficina.webp', tag:'Construção · Paragominas - PA', titulo:'Terraplenagem de galpão',
-   texto:'Exemplo: corte, aterro e compactação para fundação de galpão industrial.', maquinas:['Escavadeira hidráulica','Trator de esteira']},
+   texto:'Corte, aterro e compactação para fundação de galpão industrial.', maquinas:['Escavadeira hidráulica','Trator de esteira']},
 ];
 
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));

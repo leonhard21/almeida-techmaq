@@ -610,3 +610,24 @@ body:has(.mobile.open) .wa{display:none}
 .maq .ph{background:#fff}
 .f-foto{background:#fff}
 .f-foto img{object-fit:contain}
+
+/* avisos legais: formulário, rodapé, catálogo e mapa sob demanda */
+.aviso-dados{font-size:13px;line-height:1.45;color:var(--muted-light)}
+.aviso-dados a{color:var(--red-dark)}
+.f-legal{margin-top:40px;color:var(--steel);font-size:13px;line-height:1.5;max-width:900px}
+.f-bot a{color:var(--on-dark)}
+.cat-nota{color:var(--muted-dark);font-size:14px;margin-top:12px;max-width:760px}
+.f-nota{color:var(--steel);font-size:12.5px;line-height:1.4;margin-top:4px}
+.map-load{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:100%;border:0;background:#E3E1DB;color:var(--black);font-family:var(--head);font-weight:700;font-size:18px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+.map-load .ic{color:var(--red);width:30px;height:30px}
+.map-load small{font-family:var(--body);font-weight:400;font-size:13px;letter-spacing:0;text-transform:none;color:var(--muted-light);max-width:260px;text-align:center}
+.map-load:hover{background:#D9D6CF}
+/* página da política de privacidade */
+.politica{background:var(--paper);color:var(--black);padding-block:64px 80px}
+.politica .wrap{max-width:820px}
+.politica h1{font-size:clamp(36px,5vw,56px);margin:16px 0 8px}
+.politica .atualizada{color:var(--muted-light);font-size:15px;margin-bottom:32px}
+.politica h2{font-size:26px;margin:36px 0 12px}
+.politica p,.politica li{color:var(--body-light);font-size:17px;margin-bottom:12px}
+.politica ul{padding-left:22px;margin:0 0 12px}
+.politica a{color:var(--red-dark)}

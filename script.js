@@ -81,3 +81,9 @@ qf.addEventListener('submit',e=>{ e.preventDefault();
 $('#cmsg').dataset.label='Copiar mensagem'; $('#cmsg').addEventListener('click',e=>copy(e.currentTarget,$('#msg').textContent));
 $('#again').addEventListener('click',()=>{ done.hidden=true; qf.hidden=false; });
 $('#top').addEventListener('click',()=>scrollTo({top:0,behavior:reduce?'auto':'smooth'}));
+
+// mapa só carrega quando o visitante pede (o Google Maps usa cookies próprios)
+$$('.map-load').forEach(b=>b.addEventListener('click',()=>{
+  const f=document.createElement('iframe'); f.src=b.dataset.src; f.title='Mapa: Almeida Tech Maq em Paragominas - PA';
+  f.referrerPolicy='no-referrer-when-downgrade'; f.allowFullscreen=true; b.replaceWith(f);
+}));
