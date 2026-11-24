@@ -203,7 +203,7 @@ header.nav.solid{background:rgba(14,15,16,.96);box-shadow:0 8px 30px rgba(0,0,0,
 @keyframes wv{to{transform:translateX(-120px)}}
 .log{padding:14px 18px;line-height:1.9;min-height:132px}
 .log .w{color:var(--cat)}
-.s2 .shot{margin-top:22px;height:150px;overflow:hidden}
+.s2 .shot{margin-top:22px;aspect-ratio:2/1;overflow:hidden;border:1px solid #3A1C1C}
 .s2 .shot img{width:100%;height:100%;object-fit:cover}
 .s3{background:var(--paper);color:var(--black)}
 .s3 .num{-webkit-text-stroke-color:rgba(0,0,0,.12)}
@@ -523,7 +523,6 @@ body:has(.mobile.open) .wa{display:none}
 @media (max-width:720px){
   .col .ph{height:auto;aspect-ratio:16/10}
   .media--compact{height:auto}
-  .s2 .shot{height:auto;aspect-ratio:16/9}
   .photos{grid-template-rows:180px 150px;gap:10px}
   .dirs{margin-top:56px}
   .pillar{padding:16px 0;font-size:16px}
@@ -634,3 +633,31 @@ body:has(.mobile.open) .wa{display:none}
 .politica p,.politica li{color:var(--body-light);font-size:17px;margin-bottom:12px}
 .politica ul{padding-left:22px;margin:0 0 12px}
 .politica a{color:var(--red-dark)}
+
+/* ---------- fotos que acompanham a largura da tela ---------- */
+.media{height:clamp(240px,24vw,380px)}
+.media--compact{height:clamp(220px,21vw,320px)}
+.photos{grid-template-rows:clamp(200px,20vw,300px) clamp(160px,15vw,230px)}
+.col .ph{height:clamp(260px,27vw,400px)}
+/* ponto de interesse de cada foto, para o corte não esconder o assunto */
+img[src$="tecnico-com-notebook.webp"]{object-position:50% 62%}
+img[src$="oficina.webp"]{object-position:62% 50%}
+img[src$="escavadeira-amarela-em-terreno-de-pedra.webp"]{object-position:60% 50%}
+img[src$="pa-carregadeira-no-patio.webp"]{object-position:40% 62%}
+img[src$="escavadeira-em-operacao.webp"]{object-position:50% 72%}
+img[src$="equipe-tecnica-em-manutencao.webp"]{object-position:40% 55%}
+@media (max-width:720px){
+  .media,.media--compact{height:auto}
+  .media figure{height:auto;aspect-ratio:1/1}
+  .media figure:first-child{aspect-ratio:16/9}
+  .photos{grid-template-rows:auto auto}
+  .photos figure{aspect-ratio:4/3}
+  .photos figure:first-child{aspect-ratio:auto}
+  .col .ph{height:auto;aspect-ratio:16/10}
+  .loc-cats a:last-child{aspect-ratio:2/1}
+
+  /* rodapé em duas colunas: marca em cima, Serviços e Empresa lado a lado, Contato embaixo */
+  .f-cols{grid-template-columns:1fr 1fr;gap:32px 20px}
+  .f-cols>div:first-child,.f-cols>div:last-child{grid-column:1/-1}
+  .f-cols ul{font-size:14px;gap:10px}
+}
